@@ -1,0 +1,18 @@
+<template name="distanceByMonth">
+    <table>
+        <thead>
+        <tr>
+            <th>Month</th>
+            <th>Total Distance</th>
+        </tr>
+        </thead>
+        <tbody>
+        {{#each month}}
+        <tr>
+            <td>{{translateMonth}}</td>
+            <td>{{distance}}</td>
+        </tr>
+        {{/each}}
+        </tbody>
+    </table>
+</template>
