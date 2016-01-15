@@ -12,8 +12,8 @@ Router.configure({
     // the data it's expecting is present
     waitOn: function() {
         return [
-            Meteor.subscribe('publicLists'),
-            Meteor.subscribe('privateLists')
+            Meteor.subscribe('publicWorkouts'),
+            Meteor.subscribe('privateWorkouts')
         ];
     }
 });
@@ -33,11 +33,11 @@ Router.route('join');
 Router.route('signin');
 
 Router.route('listsShow', {
-    path: '/lists/:_id',
-    // subscribe to todos before the page is rendered but don't wait on the
+    path: '/workout/:_id',
+    // subscribe to workouts before the page is rendered but don't wait on the
     // subscription, we'll just render the items as they arrive
     onBeforeAction: function () {
-        this.todosHandle = Meteor.subscribe('todos', this.params._id);
+        this.todosHandle = Meteor.subscribe('workouts', this.params._id);
 
         if (this.ready()) {
             // Handle for launch screen defined in app-body.js
@@ -45,7 +45,7 @@ Router.route('listsShow', {
         }
     },
     data: function () {
-        return Lists.findOne(this.params._id);
+        return Workouts.findOne(this.params._id);
     },
     action: function () {
         this.render();
